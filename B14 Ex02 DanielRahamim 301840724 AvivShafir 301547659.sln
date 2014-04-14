@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "B14 Ex02 DanielRahamim 301840724 AvivShafir 301547659", "B14 Ex01 DanielRahamim 301840724 AvivShafir 301547659\B14 Ex02 DanielRahamim 301840724 AvivShafir 301547659.csproj", "{FB85DF47-F6C9-43F8-9725-4CBB39017E22}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A6F099FF-829F-4AC5-9487-F7C5F1CE19BD}"
+	ProjectSection(SolutionItems) = preProject
+		Ex1AvivShafir_DanielRAhamim.docx = Ex1AvivShafir_DanielRAhamim.docx
+		Excercise Checking Report.txt = Excercise Checking Report.txt
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FB85DF47-F6C9-43F8-9725-4CBB39017E22}.Debug|x86.ActiveCfg = Debug|x86
+		{FB85DF47-F6C9-43F8-9725-4CBB39017E22}.Debug|x86.Build.0 = Debug|x86
+		{FB85DF47-F6C9-43F8-9725-4CBB39017E22}.Release|x86.ActiveCfg = Release|x86
+		{FB85DF47-F6C9-43F8-9725-4CBB39017E22}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
