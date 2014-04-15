@@ -26,7 +26,7 @@ namespace B14_Ex01_Daniel_301840724_Aviv_301547659.Controllers
 
         private WebClient m_WebClient = new WebClient();
 
-        public static void BrowseToFacebook()
+        public void BrowseToFacebook()
         {
             Process.Start(k_FacebookURL);
         }
