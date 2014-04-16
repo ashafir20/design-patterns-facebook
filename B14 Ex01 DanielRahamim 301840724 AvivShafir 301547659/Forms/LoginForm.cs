@@ -15,11 +15,6 @@ namespace B14_Ex01_Daniel_301840724_Aviv_301547659
 {
     public partial class LoginForm : Form
     {
-        private const string k_AppID = "1441993139370754";
-        private readonly string[] r_FaceboookPermissions = 
-                    { 
-                       "user_status", "read_stream", "publish_stream", "user_photos", "publish_actions"
-                    };
 
         public LoginForm()
         {
@@ -28,10 +23,8 @@ namespace B14_Ex01_Daniel_301840724_Aviv_301547659
 
         private void login()
         {
-            LoginResult result = FacebookService.Login(k_AppID, r_FaceboookPermissions);
-            if (result != null && result.LoggedInUser != null)
+            if (UserSingleton.Instance != null)
             {
-                FacebookSession.Instance.User = result.LoggedInUser;
                 DialogResult = DialogResult.OK;
                 Close();
             }

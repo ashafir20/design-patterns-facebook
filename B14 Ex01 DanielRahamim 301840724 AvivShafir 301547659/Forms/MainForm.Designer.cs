@@ -35,6 +35,7 @@
             this.buttonGetStatics = new System.Windows.Forms.Button();
             this.labelWelcome = new System.Windows.Forms.Label();
             this.buttonQuoteMaster = new System.Windows.Forms.Button();
+            this.buttonRandomCat = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.PictureBoxUser)).BeginInit();
             this.SuspendLayout();
             // 
@@ -87,15 +88,27 @@
             this.buttonQuoteMaster.Name = "buttonQuoteMaster";
             this.buttonQuoteMaster.Size = new System.Drawing.Size(524, 50);
             this.buttonQuoteMaster.TabIndex = 4;
-            this.buttonQuoteMaster.Text = "QuoteMaster";
+            this.buttonQuoteMaster.Text = "Facts Generator";
             this.buttonQuoteMaster.UseVisualStyleBackColor = true;
             this.buttonQuoteMaster.Click += new System.EventHandler(this.buttonQuoteMaster_Click);
+            // 
+            // buttonRandomCat
+            // 
+            this.buttonRandomCat.Font = new System.Drawing.Font("Agency FB", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonRandomCat.Location = new System.Drawing.Point(12, 263);
+            this.buttonRandomCat.Name = "buttonRandomCat";
+            this.buttonRandomCat.Size = new System.Drawing.Size(524, 50);
+            this.buttonRandomCat.TabIndex = 5;
+            this.buttonRandomCat.Text = "Random Cats";
+            this.buttonRandomCat.UseVisualStyleBackColor = true;
+            this.buttonRandomCat.Click += new System.EventHandler(this.buttonRandomCat_Click);
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(543, 269);
+            this.ClientSize = new System.Drawing.Size(543, 330);
+            this.Controls.Add(this.buttonRandomCat);
             this.Controls.Add(this.buttonQuoteMaster);
             this.Controls.Add(this.labelWelcome);
             this.Controls.Add(this.buttonGetStatics);
@@ -118,5 +131,6 @@
         private System.Windows.Forms.Button buttonGetStatics;
         private System.Windows.Forms.Label labelWelcome;
         private System.Windows.Forms.Button buttonQuoteMaster;
+        private System.Windows.Forms.Button buttonRandomCat;
     }
 }

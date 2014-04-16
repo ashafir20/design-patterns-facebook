@@ -55,7 +55,7 @@
     <Reference Include="FbGraphApiWrapper">
       <HintPath>.\FbGraphApiWrapper.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>.\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -72,18 +72,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\QuoteMasterWebController.cs" />
-    <Compile Include="Forms\QuoteMaster.cs">
+    <Compile Include="Controllers\Abstract\IWebController.cs" />
+    <Compile Include="Controllers\WebController.cs" />
+    <Compile Include="Forms\CatForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\QuoteMaster.Designer.cs">
-      <DependentUpon>QuoteMaster.cs</DependentUpon>
+    <Compile Include="Forms\CatForm.Designer.cs">
+      <DependentUpon>CatForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\RageImageHelpers.cs" />
-    <Compile Include="Model\Rageface\QuoteMasterJson.cs" />
-    <Compile Include="Session\FacebookSession.cs" />
-    <Compile Include="Model\Rageface\RagePersonJson.cs" />
-    <Compile Include="Controllers\RageWebController.cs" />
+    <Compile Include="Forms\FactForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FactForm.Designer.cs">
+      <DependentUpon>FactForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\Facebook\FacebookHelper.cs" />
+    <Compile Include="Helpers\Static\RageImageHelper.cs" />
+    <Compile Include="Model\Json\CatJson.cs" />
+    <Compile Include="Model\Json\FactJson.cs" />
+    <Compile Include="Model\Json\TimeJson.cs" />
+    <Compile Include="Model\Statistics\StatisticsComputingService.cs" />
+    <Compile Include="Session\UserSingleton.cs" />
+    <Compile Include="Model\Json\RagePersonJson.cs" />
     <Compile Include="Forms\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -112,6 +122,9 @@
     </Compile>
     <Compile Include="Model\Statistics\StatisticsLogic.cs" />
     <Compile Include="Model\Statistics\StatisticsUser.cs" />
+    <EmbeddedResource Include="Forms\CatForm.resx">
+      <DependentUpon>CatForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -120,8 +133,8 @@
       <DependentUpon>MainForm.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\QuoteMaster.resx">
-      <DependentUpon>QuoteMaster.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\FactForm.resx">
+      <DependentUpon>FactForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -139,6 +152,9 @@
     <EmbeddedResource Include="Forms\StatisticsForm.resx">
       <DependentUpon>StatisticsForm.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+    <None Include="Properties\DataSources\FacebookWrapper.ObjectModel.User.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -176,7 +192,19 @@
     <None Include="Resources\lol2.jpg" />
     <None Include="Resources\lol.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\unirest-net-master\unirest-net\unirest-net\unirest-net.csproj">
+      <Project>{bb1927f2-4fc7-4520-8680-49c0245e05e0}</Project>
+      <Name>unirest-net</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" />
+  <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">
+    <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." HelpKeyword="BCLBUILD2001" />
+    <Error Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.14\tools\Microsoft.Bcl.Build.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317568." HelpKeyword="BCLBUILD2002" />
+  </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

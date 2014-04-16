@@ -104,7 +104,7 @@
             this.richTextBoxDescription.Name = "richTextBoxDescription";
             this.richTextBoxDescription.Size = new System.Drawing.Size(298, 97);
             this.richTextBoxDescription.TabIndex = 5;
-            this.richTextBoxDescription.Text = string.Empty;
+            this.richTextBoxDescription.Text = "";
             // 
             // label1
             // 
@@ -258,7 +258,7 @@
             this.pictureBox3.TabIndex = 30;
             this.pictureBox3.TabStop = false;
             // 
-            // l
+            // FunnyForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -282,7 +282,7 @@
             this.Controls.Add(this.buttonNext);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.richTextBoxDescription);
-            this.Name = "l";
+            this.Name = "FunnyForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Share Funny Stuff";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();

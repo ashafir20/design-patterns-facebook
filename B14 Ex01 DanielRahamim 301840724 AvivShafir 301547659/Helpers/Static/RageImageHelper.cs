@@ -3,15 +3,13 @@ using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 
-namespace B14_Ex01_Daniel_301840724_Aviv_301547659.Helpers
+namespace B14_Ex01_Daniel_301840724_Aviv_301547659.Helpers.Static
 {
-    class RageImageHelpers
+    static class RageImageHelper
     {
         private const string k_SampleImageFileName = "ragefacesample.jpg";
         private const string k_PaintProccessName = "mspaint.exe";
         private const string k_FilterFileExtenstion = "JPG Image (*.JPG)|*.jpg|All Files (*.*)|*.*";
-
-        private RageImageHelpers() { }
 
         public static void ShowImageInPaint(Image i_Image)
         {

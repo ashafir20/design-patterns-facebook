@@ -1,13 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
+using B14_Ex01_Daniel_301840724_Aviv_301547659.Controllers;
 using B14_Ex01_Daniel_301840724_Aviv_301547659.Forms;
-using B14_Ex01_Daniel_301840724_Aviv_301547659.Model;
 using B14_Ex01_Daniel_301840724_Aviv_301547659.Session;
 
 namespace B14_Ex01_Daniel_301840724_Aviv_301547659
@@ -17,14 +11,17 @@ namespace B14_Ex01_Daniel_301840724_Aviv_301547659
         private readonly LoginForm m_LoginForm;
         private readonly StatisticsForm m_StatisticsForm;
         private readonly FunnyForm m_FunnyForm;
-        private readonly QuoteMaster m_QuoteMasterForm;
+        private readonly FactForm m_FactForm;
+        private readonly CatForm m_CatForm;
 
         public MainForm()
         {
             InitializeComponent();
-            m_FunnyForm = new FunnyForm();
             m_StatisticsForm = new StatisticsForm();
             m_LoginForm = new LoginForm();
+            m_FunnyForm = new FunnyForm(new WebController());
+            m_FactForm = new FactForm(new WebController());
+            m_CatForm = new CatForm(new WebController());
         }
 
         protected override void OnShown(EventArgs e)
@@ -41,14 +38,14 @@ namespace B14_Ex01_Daniel_301840724_Aviv_301547659
 
         private void loadUserProfilePicture()
         {
-            PictureBoxUser.LoadAsync(FacebookSession.Instance.User.PictureSqaureURL);
+            PictureBoxUser.LoadAsync(UserSingleton.Instance.LoggedInUser.PictureSqaureURL);
         }
 
         private void showLoginForm()
         {
             if (m_LoginForm.ShowDialog() == DialogResult.Cancel)
             {
-                this.Close();
+                Close();
             }
             else
             {
@@ -59,7 +56,7 @@ namespace B14_Ex01_Daniel_301840724_Aviv_301547659
         private void updateGUIWithFacebookUserInfo()
         {
             loadUserProfilePicture();
-            labelWelcome.Text = "Logged In As : " + FacebookSession.Instance.User.Name;
+            labelWelcome.Text = "Logged In As : " + UserSingleton.Instance.LoggedInUser.Name;
         }
 
         private void buttonUploadFunny_Click(object sender, EventArgs e)
@@ -74,7 +71,12 @@ namespace B14_Ex01_Daniel_301840724_Aviv_301547659
 
         private void buttonQuoteMaster_Click(object sender, EventArgs e)
         {
-            m_QuoteMasterForm.Show();
+            m_FactForm.Show();
+        }
+
+        private void buttonRandomCat_Click(object sender, EventArgs e)
+        {
+            m_CatForm.Show();
         }
     }
 }

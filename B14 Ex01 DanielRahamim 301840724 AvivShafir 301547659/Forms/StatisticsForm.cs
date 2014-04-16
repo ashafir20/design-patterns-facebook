@@ -1,28 +1,25 @@
-﻿using B14_Ex01_Daniel_301840724_Aviv_301547659.Model;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading;
+using System.Windows.Forms;
+using B14_Ex01_Daniel_301840724_Aviv_301547659.Helpers.Facebook;
 using B14_Ex01_Daniel_301840724_Aviv_301547659.Model.Statistics;
 using B14_Ex01_Daniel_301840724_Aviv_301547659.Session;
 using FacebookWrapper.ObjectModel;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Windows.Forms;
 
-namespace B14_Ex01_Daniel_301840724_Aviv_301547659
+namespace B14_Ex01_Daniel_301840724_Aviv_301547659.Forms
 {
     public partial class StatisticsForm : Form
     {
         private const int k_MaxProgressBar = 10000;
-        private StatisticsLogic m_Statistics;
+        private StatisticsComputingService m_StatisticsService;
         private List<StatisticsUser> m_ResultList;
+        private FacebookHelper m_FacebookFetcher = new FacebookHelper();
 
         public StatisticsForm()
         {
             InitializeComponent();
+            m_FacebookFetcher.m_FetchedFriendsCompletedInvoker += onFetchedFriendsCompleted;
         }
 
         protected override void OnFormClosing(FormClosingEventArgs e)
@@ -36,10 +33,10 @@ namespace B14_Ex01_Daniel_301840724_Aviv_301547659
             base.OnShown(e);
             listBoxFriends.DisplayMember = "Name";
             listBoxPickedFriends.DisplayMember = "Name";
-            loadUserFriends();
             initListViewResults();
             progressBar.Maximum = k_MaxProgressBar;
             progressBar.Step = 4;
+            m_FacebookFetcher.FetchFriendsAsync();
         }
 
         private void initListViewResults()
@@ -50,11 +47,11 @@ namespace B14_Ex01_Daniel_301840724_Aviv_301547659
             listViewResults.Columns.Add("Total Likes");
         }
 
-        private void loadUserFriends()
+        private void onFetchedFriendsCompleted(FacebookObjectCollection<User> friends)
         {
-            foreach (User friend in FacebookSession.Instance.User.Friends)
+            foreach (User friend in friends)
             {
-                listBoxFriends.Items.Add(friend);
+               listBoxFriends.Invoke(new Action(() => listBoxFriends.Items.Add(friend)));
             }
         }
 
@@ -111,7 +108,7 @@ namespace B14_Ex01_Daniel_301840724_Aviv_301547659
 
         private void buttonGetLikesStatistics_Click(object sender, EventArgs e)
         {
-            initStatisticsLogic();
+            initStatisticsComputingService();
             clearListViewResults();
             Thread computeThread = createComputeThread();
             Thread ProgressBarThread = createProgressBarThread(computeThread);
@@ -125,19 +122,15 @@ namespace B14_Ex01_Daniel_301840724_Aviv_301547659
             {
                 if (radioButtonPhotos.Checked == true)
                 {
-                    List<StatisticsUser> PhotosLikesResult = m_Statistics.ComputeTopPhotosLikes();
-                    m_ResultList = PhotosLikesResult;
+                    m_ResultList = m_StatisticsService.GetUserTopPhotosLikersList();
                 }
                 else if (radioButtonPosts.Checked == true)
                 {
-                    List<StatisticsUser> PostsLikesResult = m_Statistics.ComputeTopPostsLikes();
-                    m_ResultList = PostsLikesResult;
+                    m_ResultList = m_StatisticsService.GetUserTopPostsLikersList();
                 }
                 else
                 {
-                    List<StatisticsUser> PhotosAndPostsLikesResult = m_Statistics.ComputeTopPhotosLikes();
-                    PhotosAndPostsLikesResult = m_Statistics.ComputeTopPostsLikes();
-                    m_ResultList = PhotosAndPostsLikesResult;
+                    m_ResultList = m_StatisticsService.GetUserTopPhotosAndPostsLikersList();
                 }
             });
             return computeThread;
@@ -161,14 +154,15 @@ namespace B14_Ex01_Daniel_301840724_Aviv_301547659
 
                 listViewResults.Invoke(new Action(() =>
                     {
-                        showLikesResults(m_ResultList);
+                        showLikesResults();
+                        buttonSortList.Enabled = true;
                         progressBar.Value = 0;
                     }));
             });
             return progressBarThread;
         }
 
-        private void initStatisticsLogic()
+        private void initStatisticsComputingService()
         {
             List<User> selectedUserFriends = new List<User>();
             foreach (User user in listBoxPickedFriends.Items)
@@ -176,7 +170,7 @@ namespace B14_Ex01_Daniel_301840724_Aviv_301547659
                 selectedUserFriends.Add(user);
             }
 
-            m_Statistics = new StatisticsLogic(selectedUserFriends);
+            m_StatisticsService = new StatisticsComputingService(selectedUserFriends);
         }
 
         private void clearListViewResults()
@@ -187,12 +181,12 @@ namespace B14_Ex01_Daniel_301840724_Aviv_301547659
             }
         }
 
-        private void showLikesResults(List<StatisticsUser> i_LikesResultList)
+        private void showLikesResults()
         {
-            foreach (StatisticsUser statisticsUser in i_LikesResultList)
+            foreach (StatisticsUser statisticsUser in m_ResultList)
             {
-                int photosLikes = statisticsUser.PhotosLikesPressed;
-                int postsLikes = statisticsUser.PostsLikesPressed;
+                int photosLikes = statisticsUser.photosLikesPressed;
+                int postsLikes = statisticsUser.postsLikesPressed;
                 ListViewItem item = new ListViewItem(new[] { statisticsUser.user.Name, photosLikes.ToString(), postsLikes.ToString(), (photosLikes + postsLikes).ToString() });
                 listViewResults.Items.Add(item);
             }
@@ -213,6 +207,14 @@ namespace B14_Ex01_Daniel_301840724_Aviv_301547659
             }
 
             this.buttonGetLikesStatistics.Enabled = true;
+        }
+
+        private void buttonSortList_Click(object sender, EventArgs e)
+        {
+            m_ResultList = m_StatisticsService.SortResultList();
+            listViewResults.Items.Clear();
+            showLikesResults();
+
         }
     }
 }

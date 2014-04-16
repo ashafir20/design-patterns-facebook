@@ -19,7 +19,7 @@ namespace B14_Ex01_Daniel_301840724_Aviv_301547659.Model.Statistics
 
         public List<StatisticsUser> ComputeTopPhotosLikes()
         {
-            FacebookObjectCollection<Album> userAlbums = FacebookSession.Instance.User.Albums;
+            FacebookObjectCollection<Album> userAlbums = UserSingleton.Instance.Albums;
             foreach (Album album in userAlbums)
             {
                 foreach (Photo photo in album.Photos)
@@ -31,20 +31,19 @@ namespace B14_Ex01_Daniel_301840724_Aviv_301547659.Model.Statistics
                         {
                             if (LikedPhotoUser.Id == StatisticUser.user.Id)
                             {
-                                StatisticUser.PhotosLikesPressed = ++StatisticUser.PhotosLikesPressed;
+                                StatisticUser.photosLikesPressed = ++StatisticUser.photosLikesPressed;
                             }
                         }
                     }
                 }
             }    
 
-            sortStatisticsUsersListByLikes();
             return m_StatisticsUsersList;
         }
         
         public List<StatisticsUser> ComputeTopPostsLikes()
         {
-            FacebookObjectCollection<Post> userPosts = FacebookSession.Instance.User.Posts;
+            FacebookObjectCollection<Post> userPosts = UserSingleton.Instance.Posts;
             foreach (Post post in userPosts)
             {
                 FacebookObjectCollection<User> postLikedByUsersList = post.LikedBy;
@@ -54,22 +53,23 @@ namespace B14_Ex01_Daniel_301840724_Aviv_301547659.Model.Statistics
                     {
                         if (LikedPostUser.Id == statisticUser.user.Id)
                         {
-                            statisticUser.PostsLikesPressed = ++statisticUser.PostsLikesPressed;
+                            statisticUser.postsLikesPressed = ++statisticUser.postsLikesPressed;
                         }
                     }
                 }
             }
 
-            sortStatisticsUsersListByLikes();
             return m_StatisticsUsersList;
         }
 
-        private void sortStatisticsUsersListByLikes()
+        public List<StatisticsUser> sortStatisticsUsersListByLikes()
         {
-            m_StatisticsUsersList.Sort((user1, user2) =>
+            if (m_StatisticsUsersList != null)
+            {
+                m_StatisticsUsersList.Sort((user1, user2) =>
                 {
-                    if (user1.PhotosLikesPressed + user1.PostsLikesPressed > user2.PhotosLikesPressed
-                        + user2.PostsLikesPressed)
+                    if (user1.photosLikesPressed + user1.postsLikesPressed > user2.photosLikesPressed
+                        + user2.postsLikesPressed)
                     {
                         return -1;
                     }
@@ -78,6 +78,12 @@ namespace B14_Ex01_Daniel_301840724_Aviv_301547659.Model.Statistics
                         return 1;
                     }
                 });
+                return m_StatisticsUsersList;
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }

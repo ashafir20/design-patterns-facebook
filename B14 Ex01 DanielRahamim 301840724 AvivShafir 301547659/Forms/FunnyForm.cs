@@ -1,25 +1,35 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 using B14_Ex01_Daniel_301840724_Aviv_301547659.Controllers;
+using B14_Ex01_Daniel_301840724_Aviv_301547659.Controllers.Abstract;
 using B14_Ex01_Daniel_301840724_Aviv_301547659.Helpers;
-using B14_Ex01_Daniel_301840724_Aviv_301547659.Model.Rageface;
+using B14_Ex01_Daniel_301840724_Aviv_301547659.Helpers.Static;
+using B14_Ex01_Daniel_301840724_Aviv_301547659.Model.Json;
 using B14_Ex01_Daniel_301840724_Aviv_301547659.Session;
+using Newtonsoft.Json;
 
 namespace B14_Ex01_Daniel_301840724_Aviv_301547659.Forms
 {
     public partial class FunnyForm : Form
     {
+        private const string k_RageFacesURLQuery = "http://alltheragefaces.com/api/all/faces";
+        private const string k_FilterByURI = "http://fonxvard.com/api/get?url=";
+        private const string k_FacebookURL = "http://www.facebook.com";
         private const int k_RageTinyBoxesAmount = 24;
         private List<RagePersonJson> m_AllRagePersons;
         private List<PictureBox> m_RagePersonsTinyPictureBoxes;
-        private RageWebController m_WebController;
         private int m_CurrentStartRangeDisplayedIndex;
         private int m_currentPicBoxIndex;
 
-        public FunnyForm()
+        private readonly IWebController m_WebController;
+
+        public FunnyForm(IWebController i_WebController)
         {
+            m_WebController = i_WebController;
             InitializeComponent();
             InitiailizeWebController();
         }
@@ -30,14 +40,38 @@ namespace B14_Ex01_Daniel_301840724_Aviv_301547659.Forms
             Hide();
         }
 
-        private void InitiailizeWebController()
+        protected override void OnShown(EventArgs e)
         {
-            m_WebController = new RageWebController();
-            m_WebController.m_notifyFinishedLoadingRagePersons += onRagePersonsDownloaded;
-            m_WebController.m_notifyFinishedLoadingFilteredImage += onFilteredImageDownloaded;
-            m_WebController.LoadRagePersonsFromServer();
+            base.OnShown(e);
+            m_WebController.DownloadWebStringAsync(new Uri(k_RageFacesURLQuery));
         }
 
+        private void InitiailizeWebController()
+        {
+            m_WebController.m_DownloadWebStringAsyncCompleted += onRagePersonsDownloaded;
+            m_WebController.m_DownloadWebDataAsyncCompleted += onFilteredImageDownloaded;
+        }
+
+        private void buttonAddFilter_Click(object sender, EventArgs e)
+        {
+            var httpFilterUriQuery = new Uri(string.Format(k_FilterByURI + getCurrentJsonRagePerson().jpg));
+            m_WebController.DownloadWebDataAsync(httpFilterUriQuery);
+        }
+
+        private void onFilteredImageDownloaded(byte[] bytes)
+        {
+            Image image = Image.FromStream(new MemoryStream(bytes));
+            pictureBoxRageFace.Image = image;
+        }
+        private void onRagePersonsDownloaded(string result)
+        {
+            m_AllRagePersons = JsonConvert.DeserializeObject<List<RagePersonJson>>(result);
+            populateRagePictureBoxes();
+            loadRageImagesToPicBoxesAsync();
+            showBigRageFaceImageUsingCurrentTinyRagePicBox();
+            markTinyRageFaceAsSelected();
+            
+        }
         private void showBigRageFaceImageUsingCurrentTinyRagePicBox()
         {
             pictureBoxRageFace.LoadAsync(getCurrentJsonRagePerson().jpg);
@@ -45,29 +79,24 @@ namespace B14_Ex01_Daniel_301840724_Aviv_301547659.Forms
 
         private void buttonSubmitPost_Click(object sender, EventArgs e)
         {
-            FacebookSession.Instance.User.PostPhoto(
-                RageImageHelpers.GetJpegByteStream(pictureBoxRageFace.Image), richTextBoxDescription.Text);
+            UserSingleton.Instance.LoggedInUser.PostPhoto(
+                RageImageHelper.GetJpegByteStream(pictureBoxRageFace.Image), richTextBoxDescription.Text);
             MessageBox.Show("The post was published to your facebook wall successfuly!", "Confirmation", MessageBoxButtons.OK);
         }
 
         private void buttonOpenInPaint_Click(object sender, EventArgs e)
         {
-            RageImageHelpers.ShowImageInPaint(pictureBoxRageFace.Image);
+            RageImageHelper.ShowImageInPaint(pictureBoxRageFace.Image);
         }
 
         private void buttonSaveImage_Click(object sender, EventArgs e)
         {       
-            RageImageHelpers.ShowSaveImageDialog(pictureBoxRageFace.Image);
+            RageImageHelper.ShowSaveImageDialog(pictureBoxRageFace.Image);
         }
 
         private void buttonOpenBrowser_Click(object sender, EventArgs e)
         {
-            m_WebController.BrowseToFacebook();
-        }
-
-        private void buttonAddFilter_Click(object sender, EventArgs e)
-        {
-            m_WebController.URIFilterRequest(new Uri(getCurrentJsonRagePerson().jpg));
+            Process.Start(k_FacebookURL);
         }
 
         private RagePersonJson getCurrentJsonRagePerson()
@@ -75,10 +104,6 @@ namespace B14_Ex01_Daniel_301840724_Aviv_301547659.Forms
            return m_AllRagePersons[m_CurrentStartRangeDisplayedIndex + m_currentPicBoxIndex];
         }
 
-        private void onFilteredImageDownloaded(Image i_Image)
-        {
-            pictureBoxRageFace.Image = i_Image;
-        }
 
         private void loadRageImagesToPicBoxesAsync()
         {
@@ -113,14 +138,6 @@ namespace B14_Ex01_Daniel_301840724_Aviv_301547659.Forms
             }
         }
 
-        private void onRagePersonsDownloaded(List<RagePersonJson> i_RagePersons)
-        {
-            m_AllRagePersons = i_RagePersons;
-            populateRagePictureBoxes();
-            loadRageImagesToPicBoxesAsync();
-            showBigRageFaceImageUsingCurrentTinyRagePicBox();
-            markTinyRageFaceAsSelected();
-        }
 
         private void populateRagePictureBoxes()
         {
@@ -130,7 +147,7 @@ namespace B14_Ex01_Daniel_301840724_Aviv_301547659.Forms
                 PictureBox picBox = new PictureBox();
                 picBox.Size = new Size(70, 70);
                 picBox.SizeMode = PictureBoxSizeMode.Zoom;
-                picBox.Click += new EventHandler(OnRageTinyPicClick);
+                picBox.Click += OnRageTinyPicClick;
                 m_RagePersonsTinyPictureBoxes.Add(picBox);
                 panelRagePersons.Controls.Add(m_RagePersonsTinyPictureBoxes[i]);
             }
