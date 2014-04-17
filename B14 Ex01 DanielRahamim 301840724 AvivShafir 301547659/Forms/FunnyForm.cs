@@ -4,9 +4,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
-using B14_Ex01_Daniel_301840724_Aviv_301547659.Controllers;
 using B14_Ex01_Daniel_301840724_Aviv_301547659.Controllers.Abstract;
-using B14_Ex01_Daniel_301840724_Aviv_301547659.Helpers;
 using B14_Ex01_Daniel_301840724_Aviv_301547659.Helpers.Static;
 using B14_Ex01_Daniel_301840724_Aviv_301547659.Model.Json;
 using B14_Ex01_Daniel_301840724_Aviv_301547659.Session;
@@ -24,7 +22,6 @@ namespace B14_Ex01_Daniel_301840724_Aviv_301547659.Forms
         private List<PictureBox> m_RagePersonsTinyPictureBoxes;
         private int m_CurrentStartRangeDisplayedIndex;
         private int m_currentPicBoxIndex;
-
         private readonly IWebController m_WebController;
 
         public FunnyForm(IWebController i_WebController)

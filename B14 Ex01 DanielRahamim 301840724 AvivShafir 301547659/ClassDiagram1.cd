@@ -1,0 +1,171 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="B14_Ex01_Daniel_301840724_Aviv_301547659.Controllers.WebController" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="7.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAACCAAAAQAAAAAAAAAAAAACAAAAEAAAAAIAA=</HashCode>
+      <FileName>Controllers\WebController.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="B14_Ex01_Daniel_301840724_Aviv_301547659.Forms.CatForm" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAEAyEBABAAAQCAAAFCAEAKAAABAMAQAAACAAA=</HashCode>
+      <FileName>Forms\CatForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="B14_Ex01_Daniel_301840724_Aviv_301547659.Forms.FactForm" Collapsed="true">
+    <Position X="5.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAwgAAEAAyIBAAACEACAAAECAEAAAABBAMAQAQBiAAA=</HashCode>
+      <FileName>Forms\FactForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="B14_Ex01_Daniel_301840724_Aviv_301547659.Forms.FunnyForm" Collapsed="true">
+    <Position X="0.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>FBgAABAQUDCFABAAgADBCogCAEHAAgGDASEhACFhABU=</HashCode>
+      <FileName>Forms\FunnyForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="B14_Ex01_Daniel_301840724_Aviv_301547659.Forms.LoginForm" Collapsed="true">
+    <Position X="2.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAACAAAAAAAACABAASEAAAAAAAAAAAAAAAEAA=</HashCode>
+      <FileName>Forms\LoginForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="B14_Ex01_Daniel_301840724_Aviv_301547659.Forms.StatisticsForm" Collapsed="true">
+    <Position X="7.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>A4QEAAgQAiRFwBIAAECACAECAEANARAQAAAIAAIIAAo=</HashCode>
+      <FileName>Forms\StatisticsForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="B14_Ex01_Daniel_301840724_Aviv_301547659.MainForm" Collapsed="true">
+    <Position X="4" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIBAEIIAiABAAEAACyAAAACBEAAARAAEAAAAAEBAAg=</HashCode>
+      <FileName>Forms\MainForm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="B14_Ex01_Daniel_301840724_Aviv_301547659.Program" Collapsed="true">
+    <Position X="5.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="B14_Ex01_Daniel_301840724_Aviv_301547659.Helpers.Facebook.FacebookHelper" Collapsed="true">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAEAAAAAA=</HashCode>
+      <FileName>Helpers\Facebook\FacebookHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="B14_Ex01_Daniel_301840724_Aviv_301547659.Helpers.Static.RageImageHelper" Collapsed="true">
+    <Position X="7.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAJAAAAAAAQAAAAAAAAAAAAEAAAAkAAAQAAAAAAAAA=</HashCode>
+      <FileName>Helpers\Static\RageImageHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="B14_Ex01_Daniel_301840724_Aviv_301547659.Model.Json.CatJson" Collapsed="true">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAIAAAAAAAAAAgABAAAABAAAAAAAAgA=</HashCode>
+      <FileName>Model\Json\CatJson.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="B14_Ex01_Daniel_301840724_Aviv_301547659.Model.Json.FactJson" Collapsed="true">
+    <Position X="7.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAYAAAAAAAAAAAAAABAAAIAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Json\FactJson.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="B14_Ex01_Daniel_301840724_Aviv_301547659.Model.Json.RagePersonJson" Collapsed="true">
+    <Position X="0.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQQBCAQIAAAAAAEAAAAAAABAAAAAAAAABAgYIIAgA=</HashCode>
+      <FileName>Model\Json\RagePersonJson.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="B14_Ex01_Daniel_301840724_Aviv_301547659.Model.Json.TimeJson" Collapsed="true">
+    <Position X="4" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Json\TimeJson.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="B14_Ex01_Daniel_301840724_Aviv_301547659.Model.Statistics.StatisticsComputingService" Collapsed="true">
+    <Position X="5.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAAAQAAgAAAAAAAAAABgAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Statistics\StatisticsComputingService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="B14_Ex01_Daniel_301840724_Aviv_301547659.Model.Statistics.StatisticsLogic" Collapsed="true">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAABEAAAEAAAAAAAAAAABAAA=</HashCode>
+      <FileName>Model\Statistics\StatisticsLogic.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="B14_Ex01_Daniel_301840724_Aviv_301547659.Model.Statistics.StatisticsUser" Collapsed="true">
+    <Position X="2.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAQAAAIAAQA=</HashCode>
+      <FileName>Model\Statistics\StatisticsUser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="B14_Ex01_Daniel_301840724_Aviv_301547659.Properties.Resources" Collapsed="true">
+    <Position X="2.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAAAABGAAgAQAAAAAAAAAAAAAAAIA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="B14_Ex01_Daniel_301840724_Aviv_301547659.Properties.Settings" Collapsed="true">
+    <Position X="4" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAABAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="B14_Ex01_Daniel_301840724_Aviv_301547659.Session.UserSingleton">
+    <Position X="6.5" Y="4.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAEAAAAAAAAAEAAAQBAQAAAAAAA=</HashCode>
+      <FileName>Session\UserSingleton.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="B14_Ex01_Daniel_301840724_Aviv_301547659.Controllers.Abstract.IWebController" Collapsed="true">
+    <Position X="0.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAACCAAAAQAAAAAAAAAAAAACAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\Abstract\IWebController.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Delegate Name="B14_Ex01_Daniel_301840724_Aviv_301547659.Controllers.Abstract.DownloadededByteCompleteEvent" Collapsed="true">
+    <Position X="0.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\Abstract\IWebController.cs</FileName>
+    </TypeIdentifier>
+  </Delegate>
+  <Delegate Name="B14_Ex01_Daniel_301840724_Aviv_301547659.Controllers.Abstract.DownloadededStringCompleteEvent" Collapsed="true">
+    <Position X="2.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controllers\Abstract\IWebController.cs</FileName>
+    </TypeIdentifier>
+  </Delegate>
+  <Delegate Name="B14_Ex01_Daniel_301840724_Aviv_301547659.Helpers.Facebook.FriendsFetchedCompleted" Collapsed="true">
+    <Position X="4" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>Helpers\Facebook\FacebookHelper.cs</FileName>
+    </TypeIdentifier>
+  </Delegate>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

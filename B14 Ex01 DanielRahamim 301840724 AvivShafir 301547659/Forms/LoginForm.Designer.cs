@@ -1,4 +1,4 @@
-﻿namespace B14_Ex01_Daniel_301840724_Aviv_301547659
+﻿namespace B14_Ex01_Daniel_301840724_Aviv_301547659.Forms
 {
     public partial class LoginForm
     {

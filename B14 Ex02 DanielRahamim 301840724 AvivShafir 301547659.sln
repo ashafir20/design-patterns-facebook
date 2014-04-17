@@ -7,7 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "B14 Ex02 DanielRahamim 3018
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A6F099FF-829F-4AC5-9487-F7C5F1CE19BD}"
 	ProjectSection(SolutionItems) = preProject
-		Ex1AvivShafir_DanielRAhamim.docx = Ex1AvivShafir_DanielRAhamim.docx
 		Excercise Checking Report.txt = Excercise Checking Report.txt
 	EndProjectSection
 EndProject
